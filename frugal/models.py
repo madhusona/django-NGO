@@ -1,8 +1,6 @@
-<<<<<<< HEAD
 from django.db import models
 
 # Create your models here.
-=======
 
 from django.db import models
 from django.forms import ModelForm
@@ -102,4 +100,3 @@ class NGO_locationForm(forms.Form):
       
 
 
->>>>>>> e8d80d4f45b62e55e361be0b15a59de3c6ce12e9

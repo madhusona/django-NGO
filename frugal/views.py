@@ -1,7 +1,5 @@
-<<<<<<< HEAD
 from django.shortcuts import render
 from django.http import HttpResponse
-=======
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from . import models
@@ -9,18 +7,15 @@ from .models import NGO_Profile
 from .models import NGO
 from .models import NGO_Registration
 
->>>>>>> e8d80d4f45b62e55e361be0b15a59de3c6ce12e9
 
 
 # Create your views here.
 def index(request):
     return render(request,'frugal/index.html')
 
-<<<<<<< HEAD
 def register(request):
     return HttpResponse("Hello, world. You're at the polls index.")
 #   return render(request,'frugal/index.html')
-=======
 
 def register(request):
     #args = {}
@@ -86,7 +81,6 @@ def Profile(request):
 
 
    
->>>>>>> e8d80d4f45b62e55e361be0b15a59de3c6ce12e9
 
 
 
