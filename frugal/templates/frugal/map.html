@@ -1,0 +1,70 @@
+<html>
+    <head>
+            
+        <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key={{GOOGLE_KEY}}" type="text/javascript"></script>
+     
+        <script>
+            function loadMap(){
+    
+            var map = new GMap2(document.getElementById("map"));
+            map.addControl(new GLargeMapControl());
+            map.addControl(new GMapTypeControl());
+            //set map center (vienna)
+            map.setCenter(new GLatLng(11.016737682666495, 76.95447733531046), 12); 
+            GEvent.addListener(map, "click", function(overlay, point){
+                map.clearOverlays();
+                if (point) {
+                    map.addOverlay(new GMarker(point));
+                    map.panTo(point);
+                    document.getElementById("id_latitude").value = point.lat();
+                    document.getElementById("id_longitude").value = point.lng();
+                                    
+                }
+                var lat = parseFloat(document.getElementById("id_latitude").value);
+                var lng = parseFloat(document.getElementById("id_longitude").value);
+                var latlng = new google.maps.LatLng(lat, lng);
+                var geocoder = new google.maps.Geocoder();
+                geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+                
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[1]) {
+                        msg = "Location: " + results[1].formatted_address
+                        document.getElementById("mypoint").innerHTML = msg
+                    }
+                }
+            });
+            });
+            
+          
+        }
+        // arrange for our onload handler to 'listen' for onload events
+        if (window.attachEvent) {
+            window.attachEvent("onload", function() {
+            loadMap();  // Internet Explorer
+            });
+        } else {
+            window.addEventListener("load", function() {
+            loadMap(); // Firefox and standard browsers
+            }, false);
+        }
+
+        
+
+        </script>
+    </head>
+
+    <body onLoad="loadMap()">
+        <div id="mypoint" style="font-size: 20;font-weight: bold">Click on map to fix your location</br></div>
+        <div id="map" style="width: 350px; height: 300px"></div><br/>
+        <form enctype="multipart/form-data" action="" method="post">
+            {% csrf_token %}
+            <table>
+                {{from.as_table}}
+                <tr>
+                    <td colspan="2"><input type="submit" name="submit" value="Next" class="submit"  /></td>
+                </tr>
+
+            </table>
+        </form>
+    </body>
+</html>
