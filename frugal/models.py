@@ -13,7 +13,7 @@ class NGO(models.Model):
     Contact_Person = models.CharField(max_length=50,help_text="Maximum 50 Characters")
     Email_id = models.CharField(max_length=50,primary_key=True,help_text="Maximum 50 Characters")
     Mobile_no = models.CharField(max_length=10,help_text="Should be 10 Characters")
-    Address   =   models.CharField(max_length=200,help_text="Door No and Street. Maximum 200 Characters")
+    Address   =   models.CharField(null=True,blank=True,max_length=200,help_text="Door No and Street. Maximum 200 Characters")
     City = models.CharField(max_length=50,help_text="Maximum 50 Characters")
     Latitude = models.DecimalField(null=True,blank=True,max_digits=13, decimal_places=10)
     Longitude = models.DecimalField(null=True,blank=True,max_digits=13, decimal_places=10)
@@ -50,7 +50,7 @@ class NGO_Registration(models.Model):
 class SignupForm(ModelForm):
     class Meta:
         model=NGO
-        fields=['Organization_Name','Contact_Person','Email_id','Mobile_no','Address','City','Pincode','Website','Established_on']
+        fields=['Organization_Name','Contact_Person','Email_id','Mobile_no','City','Pincode','Website','Established_on']
         widgets = {
             'Address': forms.Textarea, 'Email_id':forms.EmailInput,'Established_on':forms.SelectDateWidget(years=range(1900,datetime.today().year+1))
         }
@@ -78,8 +78,10 @@ class ProfileForm(forms.Form):
     Cover_Photo = forms.ImageField()
 
 class NGO_locationForm(forms.Form):
-    latitude = forms.DecimalField()
-    longitude = forms.DecimalField()
+    Address = forms.CharField(widget = forms.Textarea)
+    City = forms.CharField(widget = forms.HiddenInput(attrs={'readonly':'readonly'}))
+    latitude = forms.DecimalField(widget = forms.HiddenInput(attrs={'readonly':'readonly'}))
+    longitude = forms.DecimalField(widget = forms.HiddenInput(attrs={'readonly':'readonly'}))
 
     
 

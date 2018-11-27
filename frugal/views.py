@@ -13,17 +13,16 @@ def index(request):
 
 
 def register(request):
-    args = {}
+    #args = {}
     if request.method == 'POST':
         form = models.SignupForm(request.POST)
         if form.is_valid():
-            #form.save()
             request.session['step1_form']=request.POST
-            #request.session['ngo'] = form.cleaned_data['Email_id']
+            request.session['city'] = form.cleaned_data['City']
             return redirect('Map')
     else:
         form = models.SignupForm()
-    args['form'] = form
+    #args['form'] = form
     return render(request, 'frugal/Register.html', {'form': form})
 
 def Map(request):
@@ -32,11 +31,13 @@ def Map(request):
         if form.is_valid():
             request.session['latitude']=float(form.cleaned_data['latitude'])
             request.session['longitude']=float(form.cleaned_data['longitude'])
+            request.session['address']=str(form.cleaned_data['Address'])
             return redirect('Profile')
     else:
         form=models.NGO_locationForm()
+        form.fields["City"].initial = request.session['city']
     
-    return render(request,'frugal/map.html',{'from':form})
+    return render(request,'frugal/map.html',{'form':form})
 
 def Profile(request):
     if request.method == 'POST':
@@ -48,9 +49,9 @@ def Profile(request):
             Record = NGO.objects.get(Email_id=reg_form.cleaned_data['Email_id'])
             Record.Latitude = float(request.session['latitude'])
             Record.Longitude = float(request.session['longitude'])
+            Record.Address = str(request.session['address'])
             Record.save()
             profile = NGO_Profile()
-            #profile.NGO = NGO.objects.get(Email_id=request.session['ngo'])
             profile.NGO=NGO.objects.get(Email_id=reg_form.cleaned_data['Email_id'])
             profile.Overview = form.cleaned_data['Overview']
             profile.Cover_Photo = form.cleaned_data['Cover_Photo']
