@@ -21,6 +21,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'uyu)c+2ih3xu^wc2ogcv0_g&avhs$x^huf2&-hx4(bjuo6d675'
+<<<<<<< HEAD
+=======
+GOOGLE_KEY = 'AIzaSyA1zVFhtkIuZub4tDDkkFsAtd49uWdkKmo'
+>>>>>>> e8d80d4f45b62e55e361be0b15a59de3c6ce12e9
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,7 +42,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'frugal.apps.FrugalConfig',
+<<<<<<< HEAD
     'bootstrap4',
+=======
+    
+>>>>>>> e8d80d4f45b62e55e361be0b15a59de3c6ce12e9
 ]
 
 MIDDLEWARE = [
@@ -79,7 +87,11 @@ DATABASES = {
 
    'default': {
         'ENGINE': 'django.db.backends.mysql',
+<<<<<<< HEAD
         'NAME': 'ngo',
+=======
+        'NAME': 'Frugal',
+>>>>>>> e8d80d4f45b62e55e361be0b15a59de3c6ce12e9
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',
