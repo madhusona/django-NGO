@@ -1,5 +1,3 @@
-from django.shortcuts import render
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from . import models
@@ -72,9 +70,9 @@ def Profile(request):
                     registration1.Recognized_Body=request.POST.get("Recognized_Body"+str(count))
                     registration1.Registration_Number=request.POST.get("Registration_Number"+str(count))
                     registration1.save()
-                 
+                      
             del request.session['step1_form']
-            return redirect('index')
+            return render(request,'frugal/index.html',{'message':'Thanks for Registering!!!, We are processing your request, Let us inform you Shortly.'})
     else:
         form=models.ProfileForm()        
     return render(request, 'frugal/Profile.html',{'form': form})
