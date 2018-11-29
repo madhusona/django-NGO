@@ -72,7 +72,7 @@ def Profile(request):
                     registration1.save()
                       
             del request.session['step1_form']
-            return render(request,'frugal/index.html',{'message':'Thanks for Registering!!!, We are processing your request, Let us inform you Shortly.'})
+            return redirect('index')
     else:
         form=models.ProfileForm()        
     return render(request, 'frugal/Profile.html',{'form': form})
