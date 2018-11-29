@@ -24,7 +24,9 @@
               
                         {{ field | add_class:"form-control" }}
                       {%else%}
-                         {{ field | add_class:"file-control" }}
+             
+                        
+                         {{ field }}
                       {%endif%}
              
              
@@ -51,7 +53,7 @@
                 </div>
                 
               
-                <button type="submit" style="float: right">Submit</button>
+                <button class="btn btn-primary align-left" type="submit">Submit</button>
               </form>
             </div>
       </div>
