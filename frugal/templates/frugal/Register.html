@@ -1,28 +1,40 @@
 
-<html>
-  <head>
-            
-  </head>
-  <body>
-    <h1>NGO Registration</h1>
-    <h2>Step1: General Detail</h2>
-           
-    <form method="post">
-      {% csrf_token %}
-      {% for field in form %}
-        <p>
-          {{ field.label_tag }}<br>
-          {{ field }}
-          {% if field.help_text %}
-            <small style="color: grey">{{ field.help_text }}</small>
-          {% endif %}
-          {% for error in field.errors %}
-            <p style="color: red">{{ error }}</p>
-          {% endfor %}
-        </p>
-      {% endfor %}
-      <button type="submit" style="float:right">Next</button>
-    </form>
-  </body>
-</html>
- 
+{% extends 'frugal/base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+            <h1 class="heading1">NGO Registration:</h1>
+                     
+            <div class="progress" style="height: 30px;">
+                <div class="progress-bar" role="progressbar" style="width: 33%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Step 1: General Details</div>
+              </div>          
+            <div class="row register-form">
+                
+              <div class="col">
+                <form method="post">
+                  {% csrf_token %}
+                  {% for field in form %}
+                  <div class="form-group">
+                    <label class="labe" for="{{field.name}}">{{field.label}}</label>
+                    {% if field.name != "Established_on" %}
+                      {{ field | add_class:"form-control"}}
+                    {%else%}
+                      <br>{{ field | add_class:"date-control"}}
+                    {% endif %}
+                    {% for error in field.errors %}
+                    <p style="color: red">{{ error }}</p>
+                    {% endfor %}
+    
+                  </div>
+                  {% endfor %}
+                  <button class="btn btn-primary float-right" type="submit" >Next</button>
+                </form>
+              </div>
+            </div>
+{%endblock%}
+  
+
+
+
+  
