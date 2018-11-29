@@ -8,7 +8,8 @@
     "holderjs": "^2.9.6",
     "jquery": "^3.3.1",
     "owl.carousel": "^2.3.4",
-    "popper.js": "^1.14.4"
+    "popper.js": "^1.14.4",
+    "tether": "^1.4.5"
   },
   "devDependencies": {},
   "scripts": {
