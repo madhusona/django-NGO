@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'frugal.apps.FrugalConfig',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -81,7 +82,7 @@ DATABASES = {
 
    'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ngo',
+        'NAME': 'frugal',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': '127.0.0.1',
