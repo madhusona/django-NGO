@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .register{      
   background-image: linear-gradient( 135deg, #5EFCE8 10%, #736EFE 100%);
   padding: 3%;
@@ -12,10 +13,29 @@
   background: #f8f9fa;
   border-top-left-radius: 10% 10%;
   border-bottom-left-radius: 10% 10%;
+=======
+.register{  
+    
+   
+    background-image: linear-gradient( 135deg, #5EFCE8 10%, #736EFE 100%);
+    padding: 3%;
+}
+.register-left{
+    text-align: center;
+    color: #fff;
+    margin-top: 4%;
+}
+
+.register-right{
+    background: #f8f9fa;
+    border-top-left-radius: 10% 10%;
+    border-bottom-left-radius: 10% 10%;
+>>>>>>> 9588477bedf939aefc5bbd253e29268449028432
 }
 
 
 .register .register-form{
+<<<<<<< HEAD
   padding: 10%;
  
 }
@@ -37,10 +57,33 @@
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+=======
+    padding: 10%;
+   
+}
+
+.labe{
+    font-family: 'Noto Sans SC', sans-serif;
+}
+
+.date-control{
+    width: 33%;
+    height: calc(2.25rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+>>>>>>> 9588477bedf939aefc5bbd253e29268449028432
 
 }
 
 .file-control{
+<<<<<<< HEAD
   width: 50%;
   height: calc(2.25rem + 2px); 
   font-size: 1rem;
@@ -51,10 +94,24 @@
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+=======
+    width: 50%;
+    height: calc(2.25rem + 2px);
+   
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+>>>>>>> 9588477bedf939aefc5bbd253e29268449028432
 
 }
 
 .heading1, .heading2{
+<<<<<<< HEAD
   margin-left: 20px;
   margin-top: 20px;
 }
@@ -62,17 +119,39 @@
 #map{
   width:100%;
   height: 250px;
+=======
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+#map{
+    width:100%;
+    height: 250px;
+>>>>>>> 9588477bedf939aefc5bbd253e29268449028432
 }
 
 .table1
 {
+<<<<<<< HEAD
   border: #5EFCE8 1px solid;
   border-bottom: none;
   width: 100%;
+=======
+    border: #5EFCE8 1px solid;
+    border-bottom: none;
+    width: 100%;
+>>>>>>> 9588477bedf939aefc5bbd253e29268449028432
 }
 
 .panel1
 {
+<<<<<<< HEAD
   border: #5EFCE8 1px solid;
   border-top: none;
 }
+=======
+    border: #5EFCE8 1px solid;
+    border-top: none;
+}
+
+>>>>>>> 9588477bedf939aefc5bbd253e29268449028432
