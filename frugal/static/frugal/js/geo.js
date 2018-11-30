@@ -43,7 +43,7 @@ function getLatitudeLongitude() {
                         map.panTo(point);
                         document.getElementById("id_latitude").value = point.lat();
                         document.getElementById("id_longitude").value = point.lng();
-                                    
+                        document.getElementById("id_map_click").value = "True";            
                     }
                     var lat = parseFloat(document.getElementById("id_latitude").value);
                     var lng = parseFloat(document.getElementById("id_longitude").value);

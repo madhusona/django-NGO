@@ -19,14 +19,16 @@
               {% for field in form %}
                   {% if field.name == "Overview" or field.name == "Cover_Photo" %}
                   
-                      <label class="labe" for="{{field.name}}">{{field.label}}</label><br>
+                      {% if field.field.required %}
+                        <label class="labe" for="{{field.name}}">{{field.label_tag}}<sup class="required">*</sup></label>
+                      {% else %}
+                        <label class="labe" for="{{field.name}}">{{field.label_tag}}</label>
+                      {% endif %}
+
                       {% if field.name  != "Cover_Photo" %}
-              
                         {{ field | add_class:"form-control" }}
                       {%else%}
-             
-                        
-                         {{ field }}
+                        {{ field }}
                       {%endif%}
              
              
@@ -37,11 +39,11 @@
                 {%endfor%}
 
             </br>
-                <h5>Registration Detail:</h5>
+                <h5>Registration Detail(s):</h5>
                     
                 
                 <table class="table1">
-                   <tr><td>Recognized Body</td> <td>Registration Number</td></tr>
+                   <tr><td>Recognized Body<sup class="required">*</sup></td> <td>Registration Number<sup class="required">*</sup></td></tr>
                     <tr>
                      <td> <input id="Recognized_Body1" class="form-control" name="Recognized_Body1" required="required" type="text" /></td>
                      <td><input id="Registration_Number1" class="form-control" name="Registration_Number1" required="required" type="text" /></td>

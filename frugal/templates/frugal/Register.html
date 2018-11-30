@@ -5,10 +5,9 @@
 {% block content %}
 
             <h1 class="heading1">NGO Registration:</h1>
-            <h2 class="heading2">Step 1: General Details</h2>          
             <div class="progress" style="height: 20px;">
                 <div class="progress-bar" role="progressbar" style="width: 33%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Step 1: General Details</div>
-              </div>
+            </div>
             
             
             
@@ -19,7 +18,12 @@
                   {% csrf_token %}
                   {% for field in form %}
                   <div class="form-group">
-                    <label class="labe" for="{{field.name}}">{{field.label}}</label>
+                    {% if field.field.required %}
+                        <label class="labe" for="{{field.name}}">{{field.label_tag}}<sup class="required">*</sup></label>
+                    {% else %}
+                        <label class="labe" for="{{field.name}}">{{field.label_tag}}</label>
+                    {% endif %}
+
                     {% if field.name != "Established_on" %}
                       {{ field | add_class:"form-control"}}
                     {%else%}

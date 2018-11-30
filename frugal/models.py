@@ -20,7 +20,7 @@ class NGO(models.Model):
     City = models.CharField(max_length=50,help_text="Maximum 50 Characters")
     Latitude = models.DecimalField(null=True,blank=True,max_digits=13, decimal_places=10)
     Longitude = models.DecimalField(null=True,blank=True,max_digits=13, decimal_places=10)
-    Pincode = models.CharField(max_length=6,help_text="Should be 6 Characters")
+    Pincode = models.CharField(null=True,max_length=6,help_text="Should be 6 Characters")
     Website = models.CharField(max_length=30,blank=True,null=True,help_text="Maximum 30 Characters")
     Established_on = models.DateField(help_text="Required.")
 
@@ -51,25 +51,23 @@ class NGO_Registration(models.Model):
 
      
 class SignupForm(ModelForm):
+    
     class Meta:
         model=NGO
-        fields=['Organization_Name','Contact_Person','Email_id','Mobile_no','City','Pincode','Website','Established_on']
+        fields=['Organization_Name','Contact_Person','Email_id','Mobile_no','City','Website','Established_on']
         widgets = {
             'Address': forms.Textarea, 'Email_id':forms.EmailInput,'Established_on':forms.SelectDateWidget(years=range(1900,datetime.today().year+1))
         }
+
+    
+
     def clean_Mobile_no(self):
         data = self.cleaned_data['Mobile_no']
         
         if len(data) != 10 or not data.isdigit():
             raise ValidationError('Invalid Mobile No')
         return data
-    def clean_Pincode(self):
-        data = self.cleaned_data['Pincode']
-        
-        if len(data) != 6 or not data.isdigit():
-            raise ValidationError('Invalid Pincode')
-        return data
-
+    
     def clean_Email_id(self):
         data = self.cleaned_data['Email_id']
         if NGO.objects.filter(Email_id=self.cleaned_data['Email_id']).exists():
@@ -82,9 +80,25 @@ class ProfileForm(forms.Form):
 
 class NGO_locationForm(forms.Form):
     Address = forms.CharField(widget = forms.Textarea)
+    Pincode = forms.CharField(required=True)
     City = forms.CharField(widget = forms.HiddenInput(attrs={'readonly':'readonly'}))
-    latitude = forms.DecimalField(widget = forms.HiddenInput(attrs={'readonly':'readonly'}))
-    longitude = forms.DecimalField(widget = forms.HiddenInput(attrs={'readonly':'readonly'}))
+    latitude = forms.DecimalField(required=True,widget = forms.HiddenInput(attrs={'readonly':'readonly'}))
+    longitude = forms.DecimalField(required=True,widget = forms.HiddenInput(attrs={'readonly':'readonly'}))
+    map_click = forms.CharField(required=False,widget = forms.HiddenInput(attrs={'readonly':'readonly'}))
+
+    def clean_Pincode(self):
+        data = self.cleaned_data['Pincode']
+        
+        if len(data) != 6 or not data.isdigit():
+            raise ValidationError('Invalid Pincode')
+        return data
+
+    def clean_map_click(self):
+        data = self.cleaned_data['map_click']
+        if data != "True":
+            raise ValidationError('Locate You in Google Maps')
+
+        return data
 
     
 

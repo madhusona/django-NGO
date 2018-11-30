@@ -21,8 +21,8 @@
 
     <div class="col">
 
-       
-            <div class="border border-primary" id="map"></div>
+        <h5>Locate you in google Maps</h5>
+        <div class="border border-primary" id="map"></div>
   
 
 
@@ -31,20 +31,21 @@
 
 
             {% for field in form %}
-            {% if field.name == "City" or field.name == "latitude" or field.name == "longitude" %}
+            {% if field.name == "City" or field.name == "latitude" or field.name == "longitude" or field.name == "map_click" %}
             {{pass}}
             {% else %}
-            <label class="labe" for="{{field.name}}">{{field.label}}</label><br>
+            <label class="labe" for="{{field.name}}">{{field.label}}<sup class="required">*</sup></label>
             {% endif %}
-            <p>
-
+            
                 {{ field | add_class:"form-control" }}
+                {% for error in field.errors %}
+                    <p style="color: red">{{ error }}</p>
+                {% endfor %}
 
-            </p>
             {% endfor %}
 
 
-            <input type="submit" class="btn btn-primary align-left" name="submit" value="Next" class="submit" />
+        </br><input type="submit" class="btn btn-primary align-left" name="submit" value="Next" class="submit" />
 
 
 

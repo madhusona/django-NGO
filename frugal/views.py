@@ -35,6 +35,7 @@ def Map(request):
             request.session['latitude']=float(form.cleaned_data['latitude'])
             request.session['longitude']=float(form.cleaned_data['longitude'])
             request.session['address']=str(form.cleaned_data['Address'])
+            request.session['pincode']=str(form.cleaned_data['Pincode'])
             return redirect('Profile')
     else:
         form=models.NGO_locationForm()
@@ -53,6 +54,7 @@ def Profile(request):
             Record.Latitude = float(request.session['latitude'])
             Record.Longitude = float(request.session['longitude'])
             Record.Address = str(request.session['address'])
+            Record.Pincode = str(request.session['pincode'])
             Record.save()
             profile = NGO_Profile()
             profile.NGO=NGO.objects.get(Email_id=reg_form.cleaned_data['Email_id'])

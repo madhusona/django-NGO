@@ -26,6 +26,13 @@
     font-family: 'Noto Sans SC', sans-serif;
 }
 
+.required
+{
+    color: #d00;
+    content: "*";
+    
+}
+
 .date-control{
     width: 33%;
     height: calc(2.25rem + 2px);
@@ -68,15 +75,29 @@
 
 .table1
 {
-    border: #505050 1px solid;
+    border: #F5F3F2 1px solid;
     border-bottom: none;
     width: 100%;
 }
 
 .panel1
 {
-    border: #505050 0.5px solid;
+    border: #F5F3F2 0.5px solid;
     text-align: center;
+    margin-bottom: 20px;
     width: 100%;
 }
+
+.panel1 button
+{
+    background-color: dodgerblue;
+    color:#fff;
+    border-radius: 7px;
+    float: center;
+    width:10%;
+}
+
+
+
+
 

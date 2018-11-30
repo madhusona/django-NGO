@@ -28,7 +28,7 @@ GOOGLE_KEY = 'AIzaSyA1zVFhtkIuZub4tDDkkFsAtd49uWdkKmo'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['10.10.17.157','localhost']
 
 
 # Application definition
