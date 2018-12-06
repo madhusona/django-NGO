@@ -12,15 +12,15 @@
     <title></title>
 
     <!-- Bootstrap core CSS -->
-    <link href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
-
+    
+    <link href="{% static 'frugal/css/main.css' %}" rel="stylesheet">
    
   </head>
     <body>
         <header>
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Frugal</a>
+        <nav class="navbar navbar-expand-lg navbar-light bg-c3">
+            <a class="navbar-brand text-white" href="#">Frugal</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -29,20 +29,20 @@
 
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                      <a class="nav-link" href="{% url 'Ngo_Donation' %}">Donations for You </span></a>
+                      <a class="nav-link text-white" href="{% url 'Ngo_Donation' %}">Donations for You </span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="{% url 'Open_Donation' %}">Open Donations</a>
+                      <a class="nav-link text-white" href="{% url 'Open_Donation' %}">Open Donations</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'Ngo_Accepted' %}">Accepted Donations</a>
+                        <a class="nav-link text-white" href="{% url 'Ngo_Accepted' %}">Accepted Donations</a>
                       </li>
                   </ul>
                 
                
               <ul class="navbar-nav ml-auto mr-2 pr-5">
                         <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                   Settings
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
