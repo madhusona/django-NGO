@@ -32,7 +32,7 @@ class NGO(models.Model):
 class NGO_Profile(models.Model):
     NGO = models.OneToOneField(NGO,on_delete=models.CASCADE)
     Overview = models.CharField(max_length=10000,help_text="About your Organization")
-    Cover_Photo = models.ImageField(upload_to = 'pictures',null=True, blank=True)
+    Cover_Photo = models.ImageField(upload_to = 'frugal/static/frugal/images/Cover_photo',null=True, blank=True)
     Account_STATUS = (
         ('R', 'Registered'),
         ('V', 'Verified'),
@@ -46,6 +46,27 @@ class NGO_Registration(models.Model):
     NGO = models.ForeignKey(NGO,on_delete=models.CASCADE)
     Recognized_Body = models.CharField(max_length=100)
     Registration_Number = models.CharField(max_length=100)
+
+class Ngo_Activity(models.Model):
+    NGO = models.ForeignKey(NGO,on_delete=models.CASCADE)
+    Title = models.CharField(max_length=30)
+    Detail = models.CharField(max_length=200)
+    Photo = models.ImageField(upload_to = 'frugal/static/frugal/images/Activity')
+    Date = models.DateField()
+
+class Category(models.Model):
+    Category_Name = models.CharField(max_length=20)
+
+class Ngo_Need(models.Model):
+    NGO = models.ForeignKey(NGO,on_delete=models.CASCADE)
+    Item_Name = models.CharField(max_length=20)
+    Category = models.ForeignKey(Category,on_delete=models.CASCADE)
+    Count = models.IntegerField()
+    Detail = models.CharField(max_length=1000)
+    Photo = models.ImageField(upload_to = 'frugal/static/frugal/images/Need')
+    Need_Status = (('A','Activated'),('D','Deactivated'))
+    Status = models.CharField(max_length=1,choices=Need_Status,default='A')
+
 
 
 
@@ -99,6 +120,34 @@ class NGO_locationForm(forms.Form):
             raise ValidationError('Locate You in Google Maps')
 
         return data
+
+class Ngo_home(forms.Form):
+    Location_Choices = ((500,'All'),(2,'Less than 2Kms'),(5,'Less than 5kms'),(20,'Less than 20kms'),(100,'Less than 100kms'))
+    Category = (('All','All'),('Furniture','Furniture'),('Books','Books'),('Clothes','Clothes'),('Home applicences','Home applicences'))
+
+    Location = forms.CharField(widget=(forms.Select(choices=Location_Choices)))
+    Category = forms.CharField(widget=(forms.Select(choices=Category)))
+
+class Activity_Form(ModelForm):
+    class Meta:
+        model=Ngo_Activity
+        fields=['Title','Detail','Photo','Date']
+        widgets = {
+            'Detail': forms.Textarea,'Date':forms.SelectDateWidget(years=range(2000,datetime.today().year+1))
+        }
+
+class Need_Form(ModelForm):
+    class Meta:
+        model = Ngo_Need
+        fields=['Item_Name','Category','Count','Detail','Photo']
+        widgets = {
+            'Detail': forms.Textarea
+        }
+
+
+
+
+
 
     
 

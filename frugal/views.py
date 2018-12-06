@@ -11,9 +11,29 @@ from .models import NGO_Registration
 def index(request):
     return render(request,'frugal/index.html')
 
-def register(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
+def Edit_Need(request):
+    form=models.Need_Form()
+    return render(request,'frugal/Edit_Need.html',{'form':form})
+
+def Edit_Activity(request):
+    form=models.Activity_Form()
+    return render(request,'frugal/Edit_Activity.html',{'form':form})
+
+def Edit_Service(request):
+    return render(request,'frugal/Edit_service.html')
+
+def Ngo_Donation(request):
+    form = models.Ngo_home()
+    return render(request,'frugal/Ngo_home.html',{'form':form})
 #   return render(request,'frugal/index.html')
+def Open_Donation(request):
+    form = models.Ngo_home()
+    return render(request,'frugal/Ngo_bid.html',{'form':form})
+
+def Ngo_Accepted(request):
+     return render(request,'frugal/Ngo_accepted.html')
+
+
 
 def register(request):
     #args = {}

@@ -1,0 +1,89 @@
+{% load staticfiles %}
+{% load widget_tweaks %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+
+    <title></title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+
+   
+  </head>
+    <body>
+        <header>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Frugal</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+              
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'Ngo_Donation' %}">Donations for You </span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'Open_Donation' %}">Open Donations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'Ngo_Accepted' %}">Accepted Donations</a>
+                      </li>
+                  </ul>
+                
+               
+              <ul class="navbar-nav ml-auto mr-2 pr-5">
+                        <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  Settings
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                  <a class="dropdown-item" href="#">Edit Profile</a>
+                                  <a class="dropdown-item" href="{% url 'Edit_Service' %}">Edit Services</a>
+                                  <a class="dropdown-item" href="{% url 'Edit_Activity' %}">Edit Activities</a>
+                                  <div class="dropdown-divider"></div>
+                                  <a class="dropdown-item" href="{% url 'Edit_Need' %}">Edit Needs</a>
+                                  <a class="dropdown-item" href="#">Write Stories</a>
+                                </div>
+                        </li>
+                        
+                </ul>
+            </div>
+        </nav>
+        </header>
+        
+        <main class="container-fluid" role="main">
+                {% block content %}
+                {% endblock %}
+        </main>
+    <hr>
+    <footer class="container">
+      <p>&copy; Frugal 2017-2018</p>
+    </footer>
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'tether/dist/js/tether.js' %}"></script>
+    <script src="{% static 'popper.js/dist/umd/popper.min.js' %}"></script>
+    <script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'holderjs/holder.min.js' %}"></script>
+    <script>
+      Holder.addTheme('thumb', {
+        bg: '#55595c',
+        fg: '#eceeef',
+        text: 'Thumbnail'
+      });
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,72 @@
+{% extends 'frugal/Base_Ngo.html' %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+{% block content %}
+            <div class="row">
+           
+                    <div class="col p-3">
+                            <div class="card">
+                                <div class="card-header">
+                                    Your Needs
+                                    
+                                </div>
+                                <div class="card-body">
+                                        <div class="row ml-2">
+                                            <a data-target="#NeedModal" data-toggle="modal" href="#NeedModal">Add New Need</a>
+                                        </div>
+                                                                
+                                </div>
+          
+          
+          
+          
+                        </div>
+          
+                </div>
+        </div>
+
+            <!-- Modal -->
+    <div class="modal fade" id="NeedModal" tabindex="-1" role="dialog" aria-labelledby="NeedModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="NeedModalLabel">Add Need</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                        {% csrf_token %}
+                        {% for field in form %}
+                                <div class="form-group">
+                                        {% if field.field.required %}
+                                                <label class="labe" for="{{field.name}}">{{field.label_tag}}<sup class="required">*</sup></label>
+                                        {% else %}
+                                                <label class="labe" for="{{field.name}}">{{field.label_tag}}</label>
+                                        {% endif %}
+          
+                              
+                                        {% if field.name == "Photo" %}
+                                                {{ field }}
+                                        {% else %}
+                                                {{ field | add_class:"form-control"}}
+                                        {% endif %}
+                                   
+                             
+                                        {% for error in field.errors %}
+                                                <p style="color: red">{{ error }}</p>
+                                        {% endfor %}
+              
+                                </div>
+                        {% endfor %}
+                            <button class="btn btn-primary align-left"type="submit">ADD</button>
+                </form>
+              
+            </div>
+            
+          </div>
+        </div>
+      </div>
+   {% endblock %}
