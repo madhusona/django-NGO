@@ -11,9 +11,29 @@ from .models import NGO_Registration
 def index(request):
     return render(request,'frugal/index.html')
 
-def register(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
+def Edit_Need(request):
+    form=models.Need_Form()
+    return render(request,'frugal/Edit_Need.html',{'form':form})
+
+def Edit_Activity(request):
+    form=models.Activity_Form()
+    return render(request,'frugal/Edit_Activity.html',{'form':form})
+
+def Edit_Service(request):
+    return render(request,'frugal/Edit_service.html')
+
+def Ngo_Donation(request):
+    form = models.Ngo_home()
+    return render(request,'frugal/Ngo_home.html',{'form':form})
 #   return render(request,'frugal/index.html')
+def Open_Donation(request):
+    form = models.Ngo_home()
+    return render(request,'frugal/Ngo_bid.html',{'form':form})
+
+def Ngo_Accepted(request):
+     return render(request,'frugal/Ngo_accepted.html')
+
+
 
 def register(request):
     #args = {}
@@ -35,6 +55,7 @@ def Map(request):
             request.session['latitude']=float(form.cleaned_data['latitude'])
             request.session['longitude']=float(form.cleaned_data['longitude'])
             request.session['address']=str(form.cleaned_data['Address'])
+            request.session['pincode']=str(form.cleaned_data['Pincode'])
             return redirect('Profile')
     else:
         form=models.NGO_locationForm()
@@ -53,6 +74,7 @@ def Profile(request):
             Record.Latitude = float(request.session['latitude'])
             Record.Longitude = float(request.session['longitude'])
             Record.Address = str(request.session['address'])
+            Record.Pincode = str(request.session['pincode'])
             Record.save()
             profile = NGO_Profile()
             profile.NGO=NGO.objects.get(Email_id=reg_form.cleaned_data['Email_id'])
@@ -72,7 +94,7 @@ def Profile(request):
                     registration1.save()
                       
             del request.session['step1_form']
-            return render(request,'frugal/index.html',{'message':'Thanks for Registering!!!, We are processing your request, Let us inform you Shortly.'})
+            return redirect('index')
     else:
         form=models.ProfileForm()        
     return render(request, 'frugal/Profile.html',{'form': form})

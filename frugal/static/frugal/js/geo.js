@@ -27,8 +27,8 @@ function getLatitudeLongitude() {
                  
                 
                 var map = new GMap2(document.getElementById("map"));
-                map.addControl(new GLargeMapControl());
-                map.addControl(new GMapTypeControl());
+                //map.addControl(new GLargeMapControl());
+                //map.addControl(new GMapTypeControl());
                   
                                 
                 var lat = document.getElementById('id_latitude').value;
@@ -43,7 +43,7 @@ function getLatitudeLongitude() {
                         map.panTo(point);
                         document.getElementById("id_latitude").value = point.lat();
                         document.getElementById("id_longitude").value = point.lng();
-                                    
+                        document.getElementById("id_map_click").value = "True";            
                     }
                     var lat = parseFloat(document.getElementById("id_latitude").value);
                     var lng = parseFloat(document.getElementById("id_longitude").value);
