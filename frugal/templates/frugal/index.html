@@ -1,97 +1,165 @@
-
-{% load staticfiles %}
+{% load static %}
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    
 
-    <title>Pricing example for Bootstrap</title>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <!-- Bootstrap core CSS -->
-    <link href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <title>Pricing example for Bootstrap</title>
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500|Gaegu:700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'frugal/css/main.css' %}" rel="stylesheet">
+  <link href="{% static 'frugal/css/style.css' %}" rel="stylesheet">
+  <link href="{% static 'owl.carousel/dist/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm bg-white">
+    <a class="navbar-brand text-warm" href="#">Frugal</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon bg-light"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link text-warm" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-warm" href="#">I am a Donor</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-warm" href="{% url 'register' %}">I am a NGO</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div>
+      <div class="owl-carousel owl-loaded">
+        <div class="block-30 bk" data-stellar-background-ratio="0.5">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-md-7">
+                <h2 class="heading">It's not how much we give but how much love we put into giving.</h2>
+              </div>
+              <div class="col-md-4">
+                  <button type="button" class="btn btn-warm btn-warm-hover py-3 px-5">Donate Now</button>
+                </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
 
    
-  </head>
 
-  <body>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-          <a class="navbar-brand" href="#">Frugal</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'Donor_Register' %}">I am a Donor</a>
-              </li>            
-              <li class="nav-item">
-                  <a class="nav-link" href="{% url 'register' %}">I am a NGO</a>
-                </li> 
-            </ul>
-          </div>
-        </nav>
-        <p>{{ message }}</p>
-        <main role="main">
-          
-          <!-- Main jumbotron for a primary marketing message or call to action -->
-          <div class="jumbotron">
-            <div class="container">
-              <h1 class="display-3">Hello, world!</h1>
-              <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-              <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+    <div class="pt-5">
+        <div class="container">
+          <div class="row">
+             <div class="col">
+              <div class="media block-6">
+                <div class="icon"><span class="fas fa-hands-helping"></span></div>
+                <div class="media-body">
+                  <h3 class="heading">NGO</h3>
+                  <p>List of Indian NGOs to donate online, certified by Frugal</p>
+                  <p><a href="#">Learn More</a></p>
+                </div>
+              </div>     
             </div>
-          </div>
+           
+
+            <div class="col">
+              <div class="media block-6">
+                <div class="icon"><span class="fas fa-hands-helping"></span></div>
+                <div class="media-body">
+                  <h3 class="heading">Make Donation Now</h3>
+                  <p>List of Indian Volunteers to donate online, certified by Frugal</p>
+                  <p><a href="#">Learn More</a></p>
+                </div>
+              </div>  
+            </div>
+        
+           
     
+          </div>
+        </div>
+      </div> <!-- .site-section -->
+    
+      <div class="featured-donate overlay-color" style="background-image: url({% static 'frugal/images/Activity/dummy.jpg' %});">
+    
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 order-lg-2 mb-3 mb-lg-0">
+              <img src="{% static 'frugal/images/Activity/dummy.jpg' %}" alt="Image placeholder" class="img-fluid">
+            </div>
+            <div class="col-lg-4 pr-lg-5">
+              <span class="featured-text mb-3 d-block">Featured</span>
+              <h2>School in Africa Need Renovations</h2>
+              <p class="mb-3">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+              <span class="donation-time mb-3">Last donation 1w ago</span>
+              <div class="progress custom-progress">
+                <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <span class="fund-raised d-block mb-5">$8,100 raised of $30,000</span>
+              <p><a href="#" class="btn btn-primary btn-hover-white py-3 px-5">Donate Now</a></p>
+            </div>
+            
+          </div>
+        </div>
+    
+      </div> <!-- .featured-donate -->
+    
+
+      <footer class="footer">
           <div class="container">
-            <!-- Example row of columns -->
-            <div class="row">
-              <div class="col-md-4">
-                <h2>Heading</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+            <div class="row mb-5">
+              <div class="col-md-6 col-lg-4">
+                <h3 class="heading-section">About Us</h3>
+                <p class="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+                <p><a href="#" class="btn btn-primary px-4 py-3">Join Volunteer</a></p>
               </div>
-              <div class="col-md-4">
-                <h2>Heading</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+              
+              <div class="col-md-6 col-lg-4">
+                <div class="block-23">
+                  <h3 class="heading-section">Contact Info</h3>
+                    <ul>
+                      <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
+                      <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
+                      <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
+                      <li><span class="icon icon-clock-o"></span><span class="text">Monday &mdash; Friday 8:00am - 5:00pm</span></li>
+                    </ul>
+                  </div>
               </div>
-              <div class="col-md-4">
-                <h2>Heading</h2>
-                <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-              </div>
+              
+              
             </div>
-    
-            <hr>
-    
-          </div> <!-- /container -->
-    
-        </main>
-    
-        <footer class="container">
-          <p>&copy; Company 2017-2018</p>
+           
+          </div>
         </footer>
-    <!-- Bootstrap core JavaScript
+
+  <!-- Bootstrap core JavaScript
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
-    <script src="{% static 'tether/dist/js/tether.js' %}"></script>
-    <script src="{% static 'popper.js/dist/umd/popper.min.js' %}"></script>
-    <script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'holderjs/holder.min.js' %}"></script>
-    <script>
-      Holder.addTheme('thumb', {
-        bg: '#55595c',
-        fg: '#eceeef',
-        text: 'Thumbnail'
-      });
-    </script>
-  </body>
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
+  <script src="{% static 'tether/dist/js/tether.js' %}"></script>
+  <script src="{% static 'popper.js/dist/umd/popper.min.js' %}"></script>
+  <script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'holderjs/holder.min.js' %}"></script>
+  <script>
+    Holder.addTheme('thumb', {
+      bg: '#55595c',
+      fg: '#eceeef',
+      text: 'Thumbnail'
+    });
+  </script>
+</body>
+
 </html>
