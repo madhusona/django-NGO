@@ -18,7 +18,7 @@
                                         
                                         <div class="row mt-5">
                                             <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                                            <div class="card shadow bg-white rounded border border-c3" >
+                                            <div class="card shadow bg-white rounded border border-c3 mb-2" >
                                                    <div class="card-header inline bg-c1 text-c3 border-bottom border-c3">
                                                         Activity Name
                                                         <div class="inline float-right">
@@ -27,7 +27,7 @@
                                                         </div> 
                                                     </div>
                                                    <img class="card-img-top img-fluid" style="height: 300px" src="{% static '/frugal/images/Activity/dummy.jpg' %}" alt="Card image cap">
-                                                   <div class="card-body" style="height: 200px">
+                                                   <div class="card-body" style="height: 300px">
                                                            
                                                             <h6 class="card-subtitle mb-2 text-muted">Date</h6>
                                                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -47,7 +47,7 @@
                                                                     </div> 
                                                             </div>
                                                            <img class="card-img-top img-fluid" style="height: 300px" src="{% static '/frugal/images/Activity/loc.jpg' %}" alt="Card image cap">
-                                                            <div class="card-body" style="height: 200px">
+                                                            <div class="card-body" style="height: 300px">
                                                                    
                                                                     <h6 class="card-subtitle mb-2 text-muted">Date</h6>
                                                                     <p class="card-text">Some quick example text to build on the card title.</p>
@@ -75,12 +75,13 @@
     <div class="modal fade" id="ActivityModal" tabindex="-1" role="dialog" aria-labelledby="ActivityModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="ActivityModalLabel">Add Activity</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
+                <div class="modal-header">
+                        <h5 class="modal-title" id="ActivityModalLabel">Add Activity</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>    
+        
             <div class="modal-body">
                     <form method="post">
                             {% csrf_token %}

@@ -7,6 +7,7 @@ from django.forms import ModelForm
 from django import forms
 from datetime import datetime
 from django.core.exceptions import ValidationError
+
 import re
 
 
@@ -16,7 +17,7 @@ class NGO(models.Model):
     Contact_Person = models.CharField(max_length=50,help_text="Maximum 50 Characters")
     Email_id = models.CharField(max_length=50,primary_key=True,help_text="Maximum 50 Characters")
     Mobile_no = models.CharField(max_length=10,help_text="Should be 10 Characters")
-    Address   =   models.CharField(null=True,blank=True,max_length=200,help_text="Door No and Street. Maximum 200 Characters")
+    Address   =   models.CharField(null=True,blank=True,max_length=200)
     City = models.CharField(max_length=50,help_text="Maximum 50 Characters")
     Latitude = models.DecimalField(null=True,blank=True,max_digits=13, decimal_places=10)
     Longitude = models.DecimalField(null=True,blank=True,max_digits=13, decimal_places=10)
@@ -54,23 +55,93 @@ class Ngo_Activity(models.Model):
     Photo = models.ImageField(upload_to = 'frugal/static/frugal/images/Activity')
     Date = models.DateField()
 
+class Services(models.Model):
+    Service_Name = models.CharField(primary_key=True,max_length=20)
+
 class Category(models.Model):
-    Category_Name = models.CharField(max_length=20)
+    Category_Name = models.CharField(primary_key=True,max_length=30)
+    Credit_Point = models.IntegerField()
+
+class Product(models.Model):
+    Product_Name = models.CharField(primary_key=True,max_length=30)
+    Category = models.ForeignKey(Category,on_delete=models.CASCADE)
+
 
 class Ngo_Need(models.Model):
     NGO = models.ForeignKey(NGO,on_delete=models.CASCADE)
-    Item_Name = models.CharField(max_length=20)
+    Product = models.ForeignKey(Product,on_delete=models.CASCADE)
     Category = models.ForeignKey(Category,on_delete=models.CASCADE)
     Count = models.IntegerField()
     Detail = models.CharField(max_length=1000)
-    Photo = models.ImageField(upload_to = 'frugal/static/frugal/images/Need')
-    Need_Status = (('A','Activated'),('D','Deactivated'))
-    Status = models.CharField(max_length=1,choices=Need_Status,default='A')
+    Sample_Photo = models.ImageField(upload_to = 'frugal/static/frugal/images/Need')
+    Need_Option = (('O','One Time Need'),('L','Life Time Need'))
+    Need_Category = models.CharField(max_length=1,choices=Need_Option,default='O')
+    Need_Status = (('O','Opened'),('C','Closed'))
+    Status = models.CharField(max_length=1,choices=Need_Status,default='O')
+    Date = models.DateField(auto_now_add=True)
+
+class Donor(models.Model):
+    Donor_Name = models.CharField(max_length=50,help_text="Maximum 50 Characters")
+    DOB = models.DateField(help_text="Required.")
+    Email_id = models.CharField(max_length=50,primary_key=True,help_text="Maximum 50 Characters")
+    Mobile_no = models.CharField(max_length=10,help_text="Should be 10 Characters")
+    Profile_Photo = models.ImageField(upload_to = 'frugal/static/frugal/images/Profile_Photo',null=True, blank=True)
+    Address   =   models.CharField(null=True,blank=True,max_length=200)
+    City = models.CharField(max_length=50,help_text="Maximum 50 Characters")
+    Pincode = models.CharField(null=True,max_length=6,help_text="Should be 6 Characters")
+    Latitude = models.DecimalField(null=True,blank=True,max_digits=13, decimal_places=10)
+    Longitude = models.DecimalField(null=True,blank=True,max_digits=13, decimal_places=10)
+
+
+class Donation_Interest(models.Model):
+    Donor = models.ForeignKey(Donor,on_delete=models.CASCADE)
+    Ngo_Need = models.ForeignKey(Ngo_Need, on_delete=models.CASCADE)
+    Count = models.IntegerField()
+    Product_Photo = models.ImageField(upload_to = 'frugal/static/frugal/images/Requests',null=True, blank=True)
+    Interest_Status = (('P','Posted'),('A','Accepted'),('D','Declined'))
+    Status = models.CharField(max_length=1,choices=Interest_Status, default='P')
+    Date = models.DateField(auto_now_add=True)
+
+class Donations(models.Model):
+    NGO = models.ForeignKey(NGO,on_delete=models.CASCADE)
+    Donor = models.ForeignKey(Donor,on_delete=models.CASCADE)
+    Product_Name = models.ForeignKey(Product,on_delete=models.CASCADE)
+    Count = models.IntegerField()
+    Donated_Photo = models.ImageField(upload_to = 'frugal/static/frugal/images/Donations',null=True, blank=True)
+    Date = models.DateField(auto_now_add=True)
+
+class Post_Donation(models.Model):
+    Donor = models.ForeignKey(Donor,on_delete=models.CASCADE)
+    Product_Name = models.ForeignKey(Product,on_delete=models.CASCADE)
+    Count = models.IntegerField()
+    Detail = models.CharField(max_length=1000)
+    Product_Photo = models.ImageField(upload_to = 'frugal/static/frugal/images/Requests',null=True, blank=True)
+    Post_Status = (('P','Posted'),('C','Closed'))
+    Status = models.CharField(max_length=1,choices=Post_Status, default='P')
+    Date = models.DateField(auto_now_add=True)
+    End_Date = models.DateField()
+
+class Post_Cause(models.Model):
+    Post_Donation = models.ForeignKey(Post_Donation,on_delete=models.CASCADE)
+    Service = models.ForeignKey(Services,on_delete=models.CASCADE)
+
+class NGO_Bid(models.Model):
+    Post_Donation = models.ForeignKey(Post_Donation,on_delete=models.CASCADE)
+    NGO = models.ForeignKey(NGO,on_delete=models.CASCADE)
+    Count = models.IntegerField()
+    Date = models.DateField(auto_now_add=True)
+    Bid_Status = (('R','Requested'),('A','Accepted'),('C','Closed'))
+    Status = models.CharField(max_length=1,choices=Bid_Status, default='R')
+
+class Interest_Decline(models.Model):
+    Donation_Interest = models.ForeignKey(Donation_Interest,on_delete=models.CASCADE)
+    Declined_Reason = (('N','Not Needed Now'),('L','Donor Location is too Long'),('D','Product Damaged'),('O','Others'))
+    Reason = models.CharField(max_length=1,choices= Declined_Reason, default='N')
+    Comments = models.CharField(max_length=200,null=True,blank=True)
 
 
 
 
-     
 class SignupForm(ModelForm):
     
     class Meta:
@@ -135,14 +206,54 @@ class Activity_Form(ModelForm):
         widgets = {
             'Detail': forms.Textarea,'Date':forms.SelectDateWidget(years=range(2000,datetime.today().year+1))
         }
-
 class Need_Form(ModelForm):
+   
     class Meta:
+        
         model = Ngo_Need
-        fields=['Item_Name','Category','Count','Detail','Photo']
+        fields=['Category','Product', 'Count', 'Detail', 'Sample_Photo','Need_Category']
         widgets = {
+            
             'Detail': forms.Textarea
         }
+
+class Donor_Reg_Form(ModelForm):
+    class Meta:
+        model=Donor
+        fields=['Donor_Name','DOB','Email_id','Mobile_no','Profile_Photo','City','Address','Pincode','Latitude','Longitude']
+        widgets = {
+            'Address': forms.Textarea, 'Email_id':forms.EmailInput,'DOB':forms.SelectDateWidget(years=range(datetime.today().year-100,datetime.today().year+1)),
+            'Latitude': forms.HiddenInput(attrs={'readonly':'readonly'}),
+            'Longitude' : forms.HiddenInput(attrs={'readonly':'readonly'})
+        }
+
+class Donation_Form(forms.Form):
+    Category = forms.ModelChoiceField(queryset=Category.objects.all().order_by('Category_Name'))
+    Product_Name = forms.ModelChoiceField(queryset=Product.objects.all().order_by('Product_Name'))
+    Count = forms.IntegerField(widget=(forms.NumberInput()))
+    Product_Photo = forms.ImageField()
+
+class Cause_Form(forms.Form):
+    Cause = forms.ModelChoiceField(widget=forms.SelectMultiple(),queryset=Services.objects.all().order_by('Service_Name'))
+
+
+class Post_Donation_Form(forms.Form):
+    End_Date = forms.DateField(widget=forms.SelectDateWidget(years=range(datetime.today().year,datetime.today().year+2)))
+    Cause = forms.ModelChoiceField(widget=forms.SelectMultiple(),queryset=Services.objects.all().order_by('Service_Name'))
+
+class Decline_Form(ModelForm):
+    class Meta:
+        model=Interest_Decline
+        fields=['Reason','Comments']
+        widgets = {
+            'Comments': forms.Textarea
+         }
+
+   
+
+
+
+
 
 
 

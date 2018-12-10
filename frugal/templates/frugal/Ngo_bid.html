@@ -21,29 +21,60 @@
               <div class="col-sm-9 col-md-9 col-lg-9 col-xl-9  p-3">
                   <div class="card shadow bg-white rounded border border-c3">
                       <div class="card-header bg-c2 text-c3 border-bottom border-c3">
-                          Open Donations
+                            <ul class="nav nav-tabs card-header-tabs pull-right"  id="myTab" role="tablist">
+                                    <li class="nav-item">
+                                     <a class="nav-link active" id="available" data-toggle="tab" href="#available-tab" role="tab" aria-controls="available-tab" aria-selected="true">Available Donations</a>
+                                    </li>
+                                    <li class="nav-item">
+                                      <a class="nav-link" id="bid" data-toggle="tab" href="#bid-tab" role="tab" aria-controls="bid-tab" aria-selected="false">Your Bids</a>
+                                    </li>
+                                   
+                            </ul>
                       </div>
                       <div class="card-body">
+                          <div class="tab-content" id="myTabContent">
+                          <div class="tab-pane fade show active" id="available-tab" role="tabpanel" aria-labelledby="available">
                           <div class="card shadow bg-white rounded border border-c3">
                               <div class="card-body">
                                   <div class="row">
                                     <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                                      <img src="..." alt="..." class="img-thumbnail">
+                                      <img src="{% static '/frugal/images/Requests/help.jpg' %}" alt="..." class="img-thumbnail">
                                     </div>
                                     <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
                                       <h4>Item Name</h4>
-                                      <p>Category | Count | Donor</p>
+                                      <p>Category | Count | Donor | Location</p>
                                       <p>Detail</p>
             
                                     </div>
                                     <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                                      <button type="button" class="btn btn-primary mt-1">Bid on This Item</button>
-                                      <button type="button" class="btn btn-danger mt-1">Not Interested</button>
+                                      <button type="button" class="btn btn-primary mt-1">Bid on this Donation</button>
                                     </div>
             
                                   </div>
                               </div>
                           </div>
+                          </div>
+
+                            <div class="tab-pane fade" id="bid-tab" role="tabpanel" aria-labelledby="bid">
+                            <div class="card shadow bg-white rounded border border-c3">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                                            <img src="{% static '/frugal/images/Requests/help.jpg' %}" alt="..." class="img-thumbnail">
+                                        </div>
+                                        <div class="col-sm-9 col-md-9 col-lg-9 col-xl-9">
+                                            <h4>Item Name</h4>
+                                            <p>Category | Count | Donor | Location</p>
+                                            <p>Detail</p>
+                  
+                                        </div>
+                                          
+                  
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            </div>
 
                       </div>
 

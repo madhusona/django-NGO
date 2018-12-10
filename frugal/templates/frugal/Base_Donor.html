@@ -28,18 +28,14 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                 <ul class="navbar-nav mr-auto">
+                   
                     <li class="nav-item">
-                      <a class="nav-link text-white" href="{% url 'Ngo_Donation' %}">Donations for You </span></a>
+                      <a class="nav-link text-white" href="{% url 'My_Donation' %}">My Donations</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link text-white" href="{% url 'Open_Donation' %}">Open Donations</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="{% url 'Ngo_Accepted' %}">Accepted Donations</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link text-white" href="{% url 'Ngo_Received' %}">Recieved Donations</a>
-                    </li>
+                        <a class="nav-link text-white" href="{% url 'Donate' %}">Donate</span></a>
+                      </li>
+                   
                   </ul>
                 
                
@@ -50,10 +46,6 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                   <a class="dropdown-item" href="#">Edit Profile</a>
-                                  <a class="dropdown-item" href="{% url 'Edit_Activity' %}">Edit Activities</a>
-                                  <div class="dropdown-divider"></div>
-                                  <a class="dropdown-item" href="{% url 'Edit_Need' %}">Edit Needs</a>
-                                  <a class="dropdown-item" href="#">Write Stories</a>
                                 </div>
                         </li>
                         
