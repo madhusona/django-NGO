@@ -1,0 +1,187 @@
+{% extends 'frugal/Base_Donor.html' %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3 pt-3">
+            <form method="POST">
+                    {% csrf_token %}
+                    <label class="labe"> Cause </label>
+                    {% for field in form1 %} 
+                    {{ field | add_class:"form-control"}}
+                    {% endfor %}
+
+            </form>
+
+                  
+        </div>
+
+        <div class="col-sm-9 col-md-9 col-lg-9 col-xl-9 p-3">
+                 
+            <form method="post">
+                {% csrf_token %}
+                <div class="row">
+                        <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                            {% for field in form %}                           
+                                        
+                                {% if field.name != "Count" and field.name != "Product_Photo" %}
+                                
+                                    <label class="labe" for="{{field.name}}">{{field.label_tag}}<sup class="required">*</sup></label>
+                                                 
+                                    {{ field | add_class:"form-control"}}
+                                                     
+                                {% endif %}
+                       
+                            {% endfor %}
+                        </div>
+
+                        <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                {% for field in form %}                           
+                                            
+                                    {% if field.name == "Count" or field.name == "Product_Photo" %}
+                                    
+                                        <label class="labe" for="{{field.name}}">{{field.label_tag}}<sup class="required">*</sup></label>
+                                                     
+                                        {{ field | add_class:"form-control"}}
+                                                         
+                                    {% endif %}
+                           
+                                {% endfor %}
+                        </div>
+                </div>
+                <div class="row">
+                    <button class="btn btn-primary mt-3 mr-5 m-3"type="button">Search NGO</button>
+                    <div class="m-2"><input id="bidchk"  type="checkbox" name="Donation_type" value="Bid" onchange="changeoption()">Not Interested in the below List</div>
+                    <button id="bidbtn" onclick="showmodal()" class="btn btn-primary m-3 float-right"type="button" style="visibility:hidden">Place for Bidding</button>
+                </div>
+            
+            </form>
+            <hr>
+           
+                <div class="card m-2">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                                <img src="{% static '/frugal/images/need/help.jpg' %}" alt="..." class="img-thumbnail">
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                <h4>Product Name</h4>
+                                <h4>Ngo Name</h4>
+                                <p>Category | Count</p>
+                                <p>One Time Need or Life Time Need</p>
+                                <p>Detail</p>
+    
+                            </div>
+                            <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                                <button type="button" class="btn btn-primary mt-1">Donate</button>
+                            </div>
+    
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="card m-2">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                                    <img src="{% static '/frugal/images/need/help.jpg' %}" alt="..." class="img-thumbnail">
+                                </div>
+                                <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                        <h4>Product Name</h4>
+                                        <h4>Ngo Name</h4>
+                                        <p>Category | Count</p>
+                                        <p>One Time Need or Life Time Need</p>
+                                        <p>Detail</p>
+            
+                                </div>
+                                <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                                    <button type="button" class="btn btn-primary mt-1">Donate</button>
+                                </div>
+        
+                            </div>
+                        </div>
+                </div>
+
+           
+                
+               
+            
+                
+
+        </div>
+    </div>
+
+           <!-- Modal -->
+           <div class="modal fade" id="PostModal" tabindex="-1" role="dialog" aria-labelledby="PostModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="ActivityModalLabel">Post Donation</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>  
+                
+                    <div class="modal-body">
+                            <form method="post">
+                                    {% csrf_token %}
+                                    {% for field in form %}   
+                                    <label class="labe mt-3" for="{{field.name}}">{{field.label_tag}}<sup class="required">*</sup></label>                       
+                                        
+                                    {% if  field.name != "Product_Photo" %}
+                                                                        
+                                                     
+                                        {{ field | add_class:"form-control"}}
+                                    {% else %}
+                                        {{field}}
+                                                         
+                                    {% endif %}
+                           
+                                    {% endfor %}
+                                    {% for field in post_form %}
+                                    <div class="form-group">
+                                      
+                                          <label class="labe" for="{{field.name}}">{{field.label_tag}}<sup class="required">*</sup></label>
+                                     
+                  
+                                      {% if field.name != "End_Date" %}
+                                       
+                                        {{ field | add_class:"form-control"}}
+                                                                                  
+                                      {%else%}
+                                        <br>{{ field | add_class:"date-control"}}
+                                      {% endif %}
+                                                           
+                                    </div>
+                                    {% endfor %}
+                                    <button class="btn btn-primary float-right"type="submit">Post</button>
+                            </form>
+                      
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+
+    <script>
+
+        function showmodal()
+        {
+            $('#PostModal').modal('show');
+        }
+        function changeoption()
+        {
+            if(document.getElementById("bidchk").checked == true)
+                document.getElementById("bidbtn").style.visibility = "visible";
+            else
+                document.getElementById("bidbtn").style.visibility = "hidden";
+
+        }
+    
+    
+    </script>
+    
+{% endblock %}   

@@ -1,10 +1,10 @@
 function getLatitudeLongitude() {
-
+               
                 var address = document.getElementById('id_City').value;
                 
                 //getLatitudeLongitude(address)
-                address = address || 'TamilNadu';
-               
+                address = address || 'Coimbatore';
+                
                 // Initialize the Geocoder
                 var geocoder = new google.maps.Geocoder();
                 if (geocoder) {
@@ -13,8 +13,8 @@ function getLatitudeLongitude() {
                         'address': address
                         }, function (results, status) {
                         if (status == google.maps.GeocoderStatus.OK) {
-                            document.getElementById('id_latitude').value = results[0].geometry.location.lat();
-                            document.getElementById('id_longitude').value = results[0].geometry.location.lng();
+                            document.getElementById('id_Latitude').value = results[0].geometry.location.lat();
+                            document.getElementById('id_Longitude').value = results[0].geometry.location.lng();
                             loadMap();
                         }
                     });
@@ -31,22 +31,23 @@ function getLatitudeLongitude() {
                 //map.addControl(new GMapTypeControl());
                   
                                 
-                var lat = document.getElementById('id_latitude').value;
-                var lng = document.getElementById('id_longitude').value;
+                var lat = document.getElementById('id_Latitude').value;
+                var lng = document.getElementById('id_Longitude').value;
                 map.setCenter(new GLatLng(lat,lng), 12);
                
                 GEvent.addListener(map, "click", function(overlay, point){
                     
                     map.clearOverlays();
                     if (point) {
+                        
                         map.addOverlay(new GMarker(point));
                         map.panTo(point);
-                        document.getElementById("id_latitude").value = point.lat();
-                        document.getElementById("id_longitude").value = point.lng();
-                        document.getElementById("id_map_click").value = "True";            
+                        document.getElementById("id_Latitude").value = point.lat();
+                        document.getElementById("id_Longitude").value = point.lng();
+                        //document.getElementById("id_map_click").value = "True";            
                     }
-                    var lat = parseFloat(document.getElementById("id_latitude").value);
-                    var lng = parseFloat(document.getElementById("id_longitude").value);
+                    var lat = parseFloat(document.getElementById("id_Latitude").value);
+                    var lng = parseFloat(document.getElementById("id_Longitude").value);
                     var latlng = new google.maps.LatLng(lat, lng);
                     var geocoder = new google.maps.Geocoder();
                     

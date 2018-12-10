@@ -1,0 +1,52 @@
+{% extends 'frugal/base.html' %}
+{% load widget_tweaks %}
+{% load staticfiles %}
+
+{% block content %}
+
+        <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=AIzaSyBUCoNkfRd5XxzXQdlOWiauHvqqTizw2pk" type="text/javascript"></script>
+        <script src="{% static 'frugal/js/geo.js' %}" type="text/javascript">  </script>
+
+
+            <h1 class="heading1">Donor Registration:</h1>
+                     
+            
+            
+            <div class="row register-form">
+              
+              <div class="col">
+                <form enctype="multipart/form-data" action="" method="post" onload="getLatitudeLongitude()">
+                  {% csrf_token %}
+                  {% for field in form %}
+                  <div class="form-group">
+
+                    {% if field.name == 'Address' %}
+                        <h5>Locate you in google Maps</h5>
+                        <div class="border border-primary" id="map"></div>
+                    {% endif %}
+                    {% if field.field.required %}
+                        <label class="labe" for="{{field.name}}">{{field.label_tag}}<sup class="required">*</sup></label>
+                    {% else %}
+                        {% if field.name != "Latitude" and field.name != "Longitude"  %}
+                        <label class="labe" for="{{field.name}}">{{field.label_tag}}</label>
+                        {% endif %}
+                    {% endif %}
+
+                    {% if field.name != "DOB" and field.name != "Profile_Photo"  %}
+                      {{ field | add_class:"form-control"}}
+                    
+                    {%else%}
+                      <br>{{ field | add_class:"date-control"}}
+                    {% endif %}
+                    {% for error in field.errors %}
+                    <p style="color: red">{{ error }}</p>
+                    {% endfor %}
+    
+                  </div>
+                  {% endfor %}
+                  <button class="btn btn-primary align-left"type="submit">Submit</button>
+                </form>
+              </div>
+            </div>
+{%endblock%}
+  

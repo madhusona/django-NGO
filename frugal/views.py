@@ -11,30 +11,6 @@ from .models import NGO_Registration
 def index(request):
     return render(request,'frugal/index.html')
 
-def Edit_Need(request):
-    form=models.Need_Form()
-    return render(request,'frugal/Edit_Need.html',{'form':form})
-
-def Edit_Activity(request):
-    form=models.Activity_Form()
-    return render(request,'frugal/Edit_Activity.html',{'form':form})
-
-def Edit_Service(request):
-    return render(request,'frugal/Edit_service.html')
-
-def Ngo_Donation(request):
-    form = models.Ngo_home()
-    return render(request,'frugal/Ngo_home.html',{'form':form})
-#   return render(request,'frugal/index.html')
-def Open_Donation(request):
-    form = models.Ngo_home()
-    return render(request,'frugal/Ngo_bid.html',{'form':form})
-
-def Ngo_Accepted(request):
-     return render(request,'frugal/Ngo_accepted.html')
-
-
-
 def register(request):
     #args = {}
     if request.method == 'POST':
@@ -98,6 +74,45 @@ def Profile(request):
     else:
         form=models.ProfileForm()        
     return render(request, 'frugal/Profile.html',{'form': form})
+
+def Ngo_Donation(request):
+    form = models.Ngo_home()
+    decline_form = models.Decline_Form()
+    return render(request,'frugal/Ngo_home.html',{'form':form,'decline_form':decline_form})
+#   return render(request,'frugal/index.html')
+def Open_Donation(request):
+    form = models.Ngo_home()
+    return render(request,'frugal/Ngo_bid.html',{'form':form})
+
+def Ngo_Accepted(request):
+     return render(request,'frugal/Ngo_accepted.html')
+
+def Ngo_Received(request):
+    return render(request,'frugal/Ngo_Received.html')
+
+def Edit_Need(request):
+    form=models.Need_Form()
+    return render(request,'frugal/Edit_Need.html',{'form':form})
+
+def Edit_Activity(request):
+    form=models.Activity_Form()
+    return render(request,'frugal/Edit_Activity.html',{'form':form})
+
+def Donor_Register(request):
+    form = models.Donor_Reg_Form()
+    return render(request, 'frugal/Donor_Register.html', {'form': form})
+
+def Donate(request):
+    form = models.Donation_Form()
+    form1 = models.Cause_Form()
+    post_form = models.Post_Donation_Form()
+    return render(request, 'frugal/Donate.html', {'form': form,'form1':form1,'post_form':post_form})
+def My_Donaton(request):
+    return render(request, 'frugal/My_Donation.html')
+
+
+
+
 
 
    
