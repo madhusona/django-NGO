@@ -5,37 +5,40 @@
 {% block content %}
             <div class="row">
            
-              <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
+              <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3 p-2">
 
                   <form method="post">
                       {% csrf_token %}
                       {% for field in form %}
                       <div class="form-group">
                         <label class="labe" for="{{field.name}}">{{field.label_tag}}</label>
-                        {{ field | add_class:"form-control border border-c3"}}
+                        {{ field | add_class:"form-control"}}
                       </div>
                       {% endfor %}
                   </form>
               </div>
 
               <div class="col-sm-9 col-md-9 col-lg-9 col-xl-9  p-3">
-                  <div class="card shadow bg-white rounded border border-c3">
-                      <div class="card-header bg-c2 text-c3 border-bottom border-c3">
+                  <div class="card shadow bg-white">
+                      <div class="card-header bg-white text-c1">
                             <ul class="nav nav-tabs card-header-tabs pull-right"  id="myTab" role="tablist">
                                     <li class="nav-item">
-                                     <a class="nav-link active" id="available" data-toggle="tab" href="#available-tab" role="tab" aria-controls="available-tab" aria-selected="true">Available Donations</a>
+                                     <a class="nav-link active text-c1" id="available" data-toggle="tab" href="#available-tab" role="tab" aria-controls="available-tab" aria-selected="true">Available Donations</a>
                                     </li>
                                     <li class="nav-item">
-                                      <a class="nav-link" id="bid" data-toggle="tab" href="#bid-tab" role="tab" aria-controls="bid-tab" aria-selected="false">Your Bids</a>
+                                      <a class="nav-link text-c1" id="bid" data-toggle="tab" href="#bid-tab" role="tab" aria-controls="bid-tab" aria-selected="false">Your Bids</a>
                                     </li>
                                    
                             </ul>
+                      </div>
+                      <div class="progress" style="height: 5px;">
+                        <div class="progress-bar bg-c1" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
                       <div class="card-body">
                           <div class="tab-content" id="myTabContent">
                           <div class="tab-pane fade show active" id="available-tab" role="tabpanel" aria-labelledby="available">
                           <div class="card shadow bg-white rounded border border-c3">
-                              <div class="card-body">
+                              <div class="card-body bg-c2">
                                   <div class="row">
                                     <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
                                       <img src="{% static '/frugal/images/Requests/help.jpg' %}" alt="..." class="img-thumbnail">
@@ -47,7 +50,7 @@
             
                                     </div>
                                     <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                                      <button type="button" class="btn btn-primary mt-1">Bid on this Donation</button>
+                                      <button type="button" class="btn btn-sm btn-lg btn-c1">Bid on this Donation</button>
                                     </div>
             
                                   </div>
@@ -57,7 +60,7 @@
 
                             <div class="tab-pane fade" id="bid-tab" role="tabpanel" aria-labelledby="bid">
                             <div class="card shadow bg-white rounded border border-c3">
-                                <div class="card-body">
+                                <div class="card-body bg-c2">
                                     <div class="row">
                                         <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
                                             <img src="{% static '/frugal/images/Requests/help.jpg' %}" alt="..." class="img-thumbnail">

@@ -4,126 +4,113 @@
 
 {% block content %}
 
-              <div class="row">
-           
-              <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
-
-                  <form method="post">
-                      {% csrf_token %}
-                      {% for field in form %}
-                      <div class="form-group">
-                        <label class="labe" for="{{field.name}}">{{field.label_tag}}</label>
-                        {{ field | add_class:"form-control border border-c3"}}
-                      </div>
-                      {% endfor %}
-                  </form>
-              </div>
-
-              <div class="col-sm-9 col-md-9 col-lg-9 col-xl-9 p-3">
-                  <div class="card shadow bg-white rounded border border-c3">
-                      <div class="card-header bg-c2 text-c3 border-bottom border-c3">
-                            Donation Inbox
-                      </div>
-                      <div class="card-body">
-                            
-                                
-                                <div class="card shadow bg-white rounded border border-c3 m-2">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                                                <img src="{% static '/frugal/images/Requests/help.jpg' %}" alt="..." class="img-thumbnail">
-                                            </div>
-                                            <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                                                <h4>Item Name</h4>
-                                                <p>Category | Count | Donor | Location</p>
-                                                <p>Detail</p>
-            
-                                            </div>
-                                            <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                                                <button type="button" class="btn btn-primary mt-1">Accept</button>
-                                                <button type="button" id="dclbtn" onclick="showmodal()" class="btn btn-danger mt-1">Decline</button>
-                                            </div>
-            
-                                        </div>
-                                    </div>
-                                </div>
-                               
-
-
-                                
-                                <div class="card shadow bg-white rounded border border-c3 m-2">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                                                <img src="{% static '/frugal/images/Requests/help.jpg' %}" alt="..." class="img-thumbnail">
-                                            </div>
-                                        <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                                            <h4>Item Name-</h4>
-                                            <p>Category | Count | Donor | Location</p>
-                                            <p>Detail</p>
-                    
-                                        </div>
-                                        <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                                            <button type="button" class="btn btn-primary mt-1">Accept</button>
-                                            <button type="button" id="dclbtn" onclick="showmodal()" class="btn btn-danger mt-1">Decline</button>
-                                        </div>
-                    
-                                    </div>
-                                </div>
-                        </div>
-                                       
-                                
-                           
-                       
-                        </div>
-
-                   
 
 
 
-                  </div>
 
-              </div>
+<div class="row bg-c6">
+    <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3 p-2 bg-c2">
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="form-group">
+                <label class="labe" for="{{field.name}}">{{field.label_tag}}</label>
+                {{ field | add_class:"form-control"}}
+            </div>
+            {% endfor %}
+        </form>
     </div>
 
-
-    <div class="modal fade" id="DeclineModal" tabindex="-1" role="dialog" aria-labelledby="DeclineModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="NeedModalLabel">Add Need</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                    <form method="post">
-                            {% csrf_token %}
-                            {% for field in decline_form %}
-                                    <div class="form-group">
-                                        <label class="labe" for="{{field.name}}">{{field.label_tag}}<sup class="required">*</sup></label>
-                                        {{ field | add_class:"form-control"}}
-                                        {% for error in field.errors %}
-                                            <p style="color: red">{{ error }}</p>
-                                        {% endfor %}
-                  
-                                    </div>
-                            {% endfor %}
-                                <button class="btn btn-primary float-right"type="submit">Decline</button>
-                    </form>
-                  
-                </div>
-                
-              </div>
+    <div class="col-sm-9 col-md-9 col-lg-9 col-xl-9 p-3 bg-c2">
+         
+        <div class="card">
+            <div class="card-header bg-white text-c1">
+                Donation Inbox
             </div>
-          </div>
+ 
+            <div class="card-body">
+                <div class="card shadow bg-white rounded m-2">
+                    <div class="card-body bg-c2">
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                                <img src="{% static '/frugal/images/Requests/help.jpg' %}" alt="..." class="img-thumbnail">
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                <h4>Item Name</h4>
+                                <p>Category | Count | Donor | Location</p>
+                                <p>Detail</p>
+                            </div>
+                            <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                                <button type="button" class="btn btn-sm btn-lg btn-c1 mt-1">Accept</button>
+                                <button type="button" id="dclbtn" onclick="showmodal()" class="btn btn-sm btn-lg btn-danger mt-1">Decline</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
-    <script>
 
-            function showmodal()
-            {
-                $('#DeclineModal').modal('show');
-            }
-    </script>
-{% endblock %}   
+
+                <div class="card shadow bg-white rounded m-2">
+                    <div class="card-body bg-c2">
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                                <img src="{% static '/frugal/images/Requests/help.jpg' %}" alt="..." class="img-thumbnail">
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                <h4>Item Name-</h4>
+                                <p>Category | Count | Donor | Location</p>
+                                <p>Detail</p>
+
+                            </div>
+                            <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                                <button type="button" class="btn btn-c1 btn-sm btn-lg  mt-1">Accept</button>
+                                <button type="button" id="dclbtn" onclick="showmodal()" class="btn btn-danger btn-sm btn-lg mt-1">Decline</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="modal fade" id="DeclineModal" tabindex="-1" role="dialog" aria-labelledby="DeclineModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-c2 border-bottom border-c1">
+                <h5 class="modal-title" id="NeedModalLabel">Add Need</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    {% csrf_token %}
+                    {% for field in decline_form %}
+                    <div class="form-group">
+                        <label class="labe" for="{{field.name}}">{{field.label_tag}}<sup class="required">*</sup></label>
+                        {{ field | add_class:"form-control"}}
+                        {% for error in field.errors %}
+                        <p style="color: red">{{ error }}</p>
+                        {% endfor %}
+
+                    </div>
+                    {% endfor %}
+                    <button class="btn btn-primary float-right" type="submit">Decline</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function showmodal() {
+        $('#DeclineModal').modal('show');
+    }
+</script>
+{% endblock %}
