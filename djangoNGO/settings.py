@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'frugal.apps.FrugalConfig',
+    
     'widget_tweaks',
 ]
 
@@ -82,7 +83,7 @@ DATABASES = {
 
    'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'frugal-db',
+        'NAME': 'frugal-db1',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': '127.0.0.1',
@@ -135,3 +136,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'node_modules'),
 ]
+
+AUTH_USER_MODEL = 'frugal.User'

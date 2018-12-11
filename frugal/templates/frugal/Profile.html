@@ -16,6 +16,16 @@
           <div class="col">
             <form method="post" enctype="multipart/form-data">
               {% csrf_token %}
+              <div>
+                <label class="labe" for="{{field.name}}">Password<sup class="required">*</sup></label>
+                <input class="form-control mb-5" type="password" name="password" id="password">
+
+                <label class="labe" for="{{field.name}}">Confirm Password<sup class="required">*</sup></label>
+                <input class="form-control mb-5" type="password" name="cpassword" id="cpassword">
+
+                
+
+              </div>
               {% for field in form %}
                   {% if field.name == "Overview" or field.name == "Cover_Photo" %}
                   
@@ -26,7 +36,7 @@
                       {% endif %}
 
                       {% if field.name  != "Cover_Photo" %}
-                        {{ field | add_class:"form-control" }}
+                        {{ field | add_class:"form-control mb-5" }}
                       {% else %}
                         {{ field }}
                       {%endif%}
