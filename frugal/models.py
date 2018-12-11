@@ -65,7 +65,7 @@ class User(AbstractUser):
 
     objects = UserManager()
 
-    
+
 class NGO(models.Model):
     Organization_Name = models.CharField(max_length=200,help_text="Maximum 200 Characters")
     Contact_Person = models.CharField(max_length=50,help_text="Maximum 50 Characters")
@@ -221,15 +221,28 @@ class SignupForm(ModelForm):
         return data
 
 class ProfileForm(forms.Form):
+    Password = forms.CharField(widget=forms.PasswordInput)
+    Confirm_Password = forms.CharField(widget=forms.PasswordInput)
     Overview = forms.CharField(widget=forms.Textarea)
     Cover_Photo = forms.ImageField()
+
+    def clean_Password(self):
+        data1 = self.cleaned_data['Password']
+        data2  = self.cleaned_data['Confirm_Password']
+        if data1 != data2:
+            raise ValidationError('Password and Confirm Password Should Match')
+        return data1
+
+
+    
+
 
 class NGO_locationForm(forms.Form):
     Address = forms.CharField(widget = forms.Textarea)
     Pincode = forms.CharField(required=True)
     City = forms.CharField(widget = forms.HiddenInput(attrs={'readonly':'readonly'}))
-    latitude = forms.DecimalField(required=True,widget = forms.HiddenInput(attrs={'readonly':'readonly'}))
-    longitude = forms.DecimalField(required=True,widget = forms.HiddenInput(attrs={'readonly':'readonly'}))
+    Latitude = forms.DecimalField(required=True,widget = forms.HiddenInput(attrs={'readonly':'readonly'}))
+    Longitude = forms.DecimalField(required=True,widget = forms.HiddenInput(attrs={'readonly':'readonly'}))
     map_click = forms.CharField(required=False,widget = forms.HiddenInput(attrs={'readonly':'readonly'}))
 
     def clean_Pincode(self):

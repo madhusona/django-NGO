@@ -31,7 +31,7 @@
 
 
             {% for field in form %}
-            {% if field.name == "City" or field.name == "latitude" or field.name == "longitude" or field.name == "map_click" %}
+            {% if field.name == "City" or field.name == "Latitude" or field.name == "Longitude" or field.name == "map_click" %}
             {{pass}}
             {% else %}
             <label class="labe" for="{{field.name}}">{{field.label}}<sup class="required">*</sup></label>
